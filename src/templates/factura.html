@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Recibo</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-10">
+          <h1>Recibo</h1>
+        </div>
+        <div class="col-xs-2">
+          <img
+            class="img img-responsive"
+            src="https://app.recirculapp.com/assets/ICONO%20RECIRCULAPP-01.png"
+            alt="Logotipo"
+          />
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-xs-10">
+          <h1 class="h6">{{full_name}}</h1>
+          <h1 class="h6">https://app.recirculapp.com</h1>
+        </div>
+        <div class="col-xs-2 text-center">
+          <strong>Fecha</strong>
+          <br />
+          {{date}} <br />
+          <strong>Recibo No.</strong>
+          <br />
+          {{reciboId}}
+        </div>
+      </div>
+      <hr />
+      <div class="row text-center" style="margin-bottom: 2rem">
+        <div class="col-xs-6">
+          <h1 class="h2">Cliente</h1>
+          <strong>{{full_name}}</strong>
+        </div>
+        <div class="col-xs-6">
+          <h1 class="h2">Remitente</h1>
+          <strong>Recirculapp</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Reciduo</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each order.subcategories}}
+              <tr>
+                <td>{{this.subcategory.subCategoryName}}</td>
+                <td>{{this.quantity}}</td>
+                <td>${{this.subcategory.suggested_price}}</td>
+                <td>${{this.subtotal}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+            <tfoot>
+              <!-- <tr>
+                <td colspan="3" class="text-right">Impuestos</td>
+                <td>{{impuestos}}</td>
+              </tr> -->
+              <tr>
+                <td colspan="3" class="text-right">
+                  <h4>Total</h4>
+                </td>
+                <td>
+                  <h4>${{amount}}</h4>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="row text-center" style="margin-bottom: 2rem">
+        <div class="col-xs-12">
+          <h3 class="h3">CONTRIBUCIÓN AMBIENTAL</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>TON</th>
+                <th>M³ AGUA</th>
+                <th>MJ ENERGIA</th>
+                <th>ARBOLES</th>
+                <th>TON CO2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{this.statistics.TON}}</td>
+                <td>{{this.statistics.M_AGUA}}</td>
+                <td>{{this.statistics.MJ_ENERGIA}}</td>
+                <td>{{this.statistics.ARBOLES}}</td>
+                <td>{{this.statistics.TON_CO2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <p class="h5">Gracias por su compra</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
